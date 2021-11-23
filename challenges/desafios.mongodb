@@ -41,3 +41,14 @@ db.produtos.updateMany({}, { $set: { avaliacao: NumberInt("0")} });
 db.produtos.updateMany({ tags: "bovino" }, { $inc: { avaliacao: 5 } });
 db.produtos.updateMany({ tags: "ave" }, { $inc: { avaliacao: 3 } });
 db.produtos.find({}, { _id: 0, nome: 1, avaliacao: 1 });
+
+
+/*4 - Atribua a data corrente ao campo ultimaModificacao no sanduíche Big Mac.
+Para isso, escreva no arquivo desafio4.js duas queries, nesta ordem:
+
+Crie uma query que atribua a data corrente ao campo ultimaModificacao no sanduíche Big Mac. Para a data corrente faça uso do tipo Date.
+
+Crie uma query que retorne o nome de todos os documentos em que o campo ultimaModificacao existe.*/
+
+db.produtos.updateOne({ nome: "Big Mac" }, { $currentDate: { lastModified: true, ultimaModificacao: { $type: "date" } } });
+db.produtos.find({ ultimaModificacao: { $exists: true} }, { _id: 0, nome: 1});
