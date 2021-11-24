@@ -214,3 +214,13 @@ Crie uma query que retorne a quantidade de documentos que contêm a expressão f
 
 db.produtos.createIndex({ descricao: "text" }, { default_language: "portuguese" });
 db.produtos.count({ $text: { $search: "/feito com/" } });
+
+
+/*19 - Renomeie o campo descricao para descricaoSite em todos os documentos.
+Para isso, escreva no arquivo desafio19.js duas queries, nesta ordem:
+
+Crie uma query que faça a renomeação do campo descricao para descricaoSite em todos os documentos.
+
+Crie uma query que retorne o nome, descricao e descricaoSite de todos os documentos.*/
+
+db.produtos.updateMany({}, { $rename: { descricao: descricaoSite }});
